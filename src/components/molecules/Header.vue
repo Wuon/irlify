@@ -63,7 +63,7 @@ export default {
   }
   .logo{
     margin-right: 1rem;
-    border-right: 1px solid #e2e2e2;
+    border-right: 1px solid #cccccc;
     padding-right: 1rem;
   }
   .text{

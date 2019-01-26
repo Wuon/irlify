@@ -18,7 +18,7 @@ export default {
     margin: 0;
   }
   #app {
-    font-family: 'Product Sans', Helvetica, Arial, sans-serif;
+    font-family: 'Circular Std', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: #222222;

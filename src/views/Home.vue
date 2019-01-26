@@ -1,29 +1,45 @@
 <template>
   <div class="container">
-    <Trend
-      :data="[0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0, 1, 2, 0, 7, 5]"
-      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-      auto-draw
-      smooth>
-    </Trend>
-    <CardContainer></CardContainer>
-    <Textarea>
-
-    </Textarea>
+    <vue-editor v-model="content" class="font" :editorToolbar="customToolbar"></vue-editor>
+    <button @click="save" class="button">     <font-awesome-icon
+      icon="save"
+      class="save"
+    /> </button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-
-import Textarea from '../components/atoms/Textarea.vue';
-import CardContainer from '../components/organisms/CardContainer.vue';
+import { VueEditor } from 'vue2-editor';
 
 export default {
-  name: 'home',
+
   components: {
-    CardContainer,
-    Textarea,
+    VueEditor,
+  },
+  data() {
+    return {
+      content: '',
+      customToolbar: [
+        [{ header: [false, 1, 2, 3, 4, 5, 6] }],
+        ['bold', 'italic', 'underline', 'strike'], // toggled buttons
+        [
+          { align: '' },
+          { align: 'center' },
+          { align: 'right' },
+          { align: 'justify' },
+        ],
+        ['blockquote', 'code-block'],
+        [{ indent: '-1' }, { indent: '+1' }],
+        [{ color: [] }, { background: [] }],
+        ['link'],
+        ['clean'],
+      ],
+    };
+  },
+  methods: {
+    save() {
+      console.log(this.content);
+    },
   },
 };
 </script>
@@ -31,5 +47,20 @@ export default {
 <style scoped>
   .container{
     padding-top: 70px;
+  }
+  .font{
+    height: calc(100vh - 118px);
+  }
+  .button{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding: 15px 50px;
+    font-weight: bold;
+    text-decoration: none;
+    border: none;
+    color: #ffffff;
+    background-color: #222222;
+    font-size: 16px;
   }
 </style>

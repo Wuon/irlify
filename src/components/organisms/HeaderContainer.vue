@@ -18,7 +18,7 @@ export default {
   .container{
     height: 70px;
     width: 100%;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid #cccccc;
     display: flex;
     align-items: center;
     justify-content: space-between;
