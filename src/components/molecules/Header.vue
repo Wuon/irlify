@@ -6,28 +6,24 @@
           <img src="https://slackhq.com/wp-content/themes/babka/img/_rebrand/icons/icon_slack.svg" width="100" class="logo" alt="" scale="0">
         </a>
       </RouterLink>
-      <RouterLink to="/favourite">
+      <RouterLink to="/favourite" class="link">
         <a>
-          <span class="text">Favourites</span>
+          <span class="text">Statistics</span>
         </a>
       </RouterLink>
     </div>
-    <div class="titleContainer">
-      <Title title="irlify"></Title>
-    </div>
-    <div class="searchBarContainer">
-      <Searchbar></Searchbar>
+    <div class="dateContainer">
+      <DatePicker></DatePicker>
     </div>
   </header>
 </template>
 
 <script>
-import Title from '../atoms/Title.vue';
-import Searchbar from '../atoms/Searchbar.vue';
+import DatePicker from './DatePicker.vue';
 
 export default {
   name: 'Header',
-  components: { Searchbar, Title },
+  components: { DatePicker },
 };
 </script>
 
@@ -58,14 +54,7 @@ export default {
     align-items: center;
     flex: 1;
   }
-  .titleContainer{
-    display: flex;
-    justify-content: center;
-    flex: 1;
-    text-align: center;
-    align-items: center;
-  }
-  .searchBarContainer{
+  .dateContainer{
     display: flex;
     justify-content: right;
     align-items: center;
@@ -74,9 +63,15 @@ export default {
   }
   .logo{
     margin-right: 1rem;
+    border-right: 1px solid #e2e2e2;
+    padding-right: 1rem;
   }
   .text{
-    border-left: 1px solid #e2e2e2;
-    padding-left: 1rem;
+  }
+  .link{
+    transition: all 100ms;
+  }
+  .link:hover{
+    transform: scale(1.1);
   }
 </style>
