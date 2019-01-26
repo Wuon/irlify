@@ -1,18 +1,26 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Trend
+      :data="[0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0]"
+      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
+      auto-draw
+      smooth>
+    </Trend>
+    <Textarea>
+
+    </Textarea>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+
+import Textarea from '../components/atoms/Textarea.vue';
 
 export default {
   name: 'home',
   components: {
-    HelloWorld,
+    Textarea,
   },
 };
 </script>
