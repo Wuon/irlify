@@ -10,6 +10,9 @@
 
 <script>
 import { VueEditor } from 'vue2-editor';
+import store from '@/store';
+import axios from 'axios';
+import moment from 'moment';
 
 export default {
 
@@ -18,7 +21,6 @@ export default {
   },
   data() {
     return {
-      content: '',
       customToolbar: [
         [{ header: [false, 1, 2, 3, 4, 5, 6] }],
         ['bold', 'italic', 'underline', 'strike'], // toggled buttons
@@ -36,9 +38,22 @@ export default {
       ],
     };
   },
+  computed: {
+    content: {
+      get() {
+        return store.state.body;
+      },
+      set(body) {
+        store.commit('setBody', body);
+      },
+    },
+  },
   methods: {
     save() {
-      console.log(this.content);
+      axios.post('http://localhost:3002/api/entry', {
+        createdAt: moment(store.state.date).format('YYYY-MM-DD'),
+        body: this.content,
+      });
     },
   },
 };
