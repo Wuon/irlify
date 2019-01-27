@@ -14,7 +14,7 @@ export default new Vuex.Store({
   mutations: {
     setDate(state, date) {
       state.date = date;
-      axios.get(`http://localhost:3002/api/entry?date=${moment(date).format('YYYY-MM-DD')}`)
+      axios.get(`${process.env.VUE_APP_API}/api/entry?date=${moment(date).format('YYYY-MM-DD')}`)
         .then((response) => {
           state.body = response.data.body;
           state.emotion = response.data.emotion;

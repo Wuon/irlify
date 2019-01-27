@@ -25,7 +25,7 @@ export default {
     };
   },
   mounted() {
-    axios.get('http://localhost:3002/api/entry').then((response) => {
+    axios.get(`${process.env.VUE_APP_API}/api/entry`).then((response) => {
       _.forEachRight(response.data, (entry) => {
         this.anger.push(entry.emotion.anger);
         this.fear.push(entry.emotion.fear);

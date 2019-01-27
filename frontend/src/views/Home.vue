@@ -82,7 +82,7 @@ export default {
   },
   methods: {
     save() {
-      axios.post('http://localhost:3002/api/entry', {
+      axios.post(`${process.env.VUE_APP_API}/api/entry`, {
         createdAt: moment(store.state.date).format('YYYY-MM-DD'),
         body: this.content,
       });
