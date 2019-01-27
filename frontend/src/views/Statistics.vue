@@ -2,7 +2,7 @@
   <div class="container">
       <Graph :data=anger title="Anger" :gradient="['#ffb3ba']"></Graph>
       <Graph :data=joy title="Joy" :gradient="['#ffd84d']"></Graph>
-      <Graph :data=fear title="Fear" :gradient="['#78ff8b']"></Graph>
+      <Graph :data=fear title="Fear" :gradient="['#3eff70']"></Graph>
       <Graph :data=sadness title="Sadness" :gradient="['#bae1ff']"></Graph>
       <Graph :data=surprise title="Surprise" :gradient="['#ff9336']"></Graph>
   </div>
@@ -26,7 +26,7 @@ export default {
   },
   mounted() {
     axios.get('http://localhost:3002/api/entry').then((response) => {
-      _.forEach(response.data, (entry) => {
+      _.forEachRight(response.data, (entry) => {
         this.anger.push(entry.emotion.anger);
         this.fear.push(entry.emotion.fear);
         this.joy.push(entry.emotion.joy);

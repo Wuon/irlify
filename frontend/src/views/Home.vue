@@ -2,6 +2,10 @@
   <div class="container">
     <div v-if="isPast">
       <div class="post">
+        <font-awesome-icon
+          :icon=largest
+          class="emoji"
+        />
         <div v-html="content">
       </div>
       </div>
@@ -21,6 +25,7 @@ import { VueEditor } from 'vue2-editor';
 import store from '@/store';
 import axios from 'axios';
 import moment from 'moment';
+import _ from 'lodash';
 
 export default {
   components: {
@@ -54,9 +59,24 @@ export default {
         store.commit('setBody', body);
       },
     },
+    largest() {
+      const emotion = Object.keys(store.state.emotion)
+        .reduce((a, b) => (store.state.emotion[a] > store.state.emotion[b] ? a : b));
+      if (emotion === 'sadness') {
+        return 'sad-cry';
+      }
+      if (emotion === 'joy') {
+        return 'grin-beam';
+      }
+      if (emotion === 'anger') {
+        return 'angry';
+      }
+      if (emotion === 'fear') {
+        return 'grimace';
+      }
+      return emotion;
+    },
     isPast() {
-      console.log(moment().isAfter(store.state.date));
-      console.log(!moment().isSame(store.state.date, 'd'));
       return moment().isAfter(store.state.date) && !moment().isSame(store.state.date, 'd');
     },
   },
@@ -90,8 +110,11 @@ export default {
     background-color: #222222;
     font-size: 16px;
   }
-
   .post{
     padding: 100px 300px;
+  }
+  .emoji{
+    color: #F4C349;
+    font-size: 24px;
   }
 </style>

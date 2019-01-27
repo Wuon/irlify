@@ -1,6 +1,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faSearch, faCaretLeft, faCaretRight, faSave,
+  faSurprise, faSadCry, faGrinBeam, faAngry, faGrimace,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
@@ -12,7 +13,8 @@ import router from './router';
 import store from './store';
 import './scss/styles.scss';
 
-library.add(faSearch, faCaretLeft, faCaretRight, faSave);
+library.add(faSearch, faCaretLeft, faCaretRight, faSave,
+  faSurprise, faSadCry, faGrinBeam, faAngry, faGrimace);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

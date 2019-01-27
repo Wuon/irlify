@@ -8,7 +8,7 @@
       </RouterLink>
       <RouterLink to="/statistics" class="link">
         <a>
-          <span class="text">Statistics</span>
+          <span class="text">Emotion</span>
         </a>
       </RouterLink>
     </div>
