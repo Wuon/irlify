@@ -1,44 +1,20 @@
 <template>
   <div class="container">
-    <trend
-      :data="anger"
-      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-      auto-draw
-      smooth>
-    </trend>
-    <trend
-      :data="fear"
-      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-      auto-draw
-      smooth>
-    </trend>
-    <trend
-      :data="joy"
-      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-      auto-draw
-      smooth>
-    </trend>
-    <trend
-      :data="sadness"
-      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-      auto-draw
-      smooth>
-    </trend>
-    <trend
-      :data="surprise"
-      :gradient="['#6fa8dc', '#42b983', '#2c3e50']"
-      auto-draw
-      smooth>
-    </trend>
-</div>
+      <Graph :data=anger title="Anger" :gradient="['#ffb3ba']"></Graph>
+      <Graph :data=joy title="Joy" :gradient="['#ffd84d']"></Graph>
+      <Graph :data=fear title="Fear" :gradient="['#78ff8b']"></Graph>
+      <Graph :data=sadness title="Sadness" :gradient="['#bae1ff']"></Graph>
+      <Graph :data=surprise title="Surprise" :gradient="['#ff9336']"></Graph>
+  </div>
 </template>
 
 <script>
-import store from '@/store';
 import axios from 'axios';
 import _ from 'lodash';
+import Graph from '../components/atoms/Graph.vue';
 
 export default {
+  components: { Graph },
   data() {
     return {
       anger: [],
@@ -59,29 +35,11 @@ export default {
       });
     });
   },
-  computed: {
-    content: {
-      get() {
-        return store.state.body;
-      },
-      set(body) {
-        store.commit('setBody', body);
-      },
-    },
-  },
-  methods: {
-    save() {
-      axios.post('http://localhost:3002/api/entry', {
-        createdAt: moment(store.state.date).format('YYYY-MM-DD'),
-        body: this.content,
-      });
-    },
-  },
 };
 </script>
 
 <style scoped>
   .container{
-    padding-top: 70px;
+    padding: 100px;
   }
 </style>

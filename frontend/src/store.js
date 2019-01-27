@@ -16,7 +16,6 @@ export default new Vuex.Store({
       axios.get(`http://localhost:3002/api/entry?date=${moment(date).format('YYYY-MM-DD')}`)
         .then((response) => {
           state.body = response.data.body;
-          console.log(state.body);
         });
     },
     setBody(state, body) {

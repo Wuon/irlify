@@ -1,10 +1,18 @@
 <template>
   <div class="container">
-    <vue-editor v-model="content" class="font" :editorToolbar="customToolbar"></vue-editor>
-    <button @click="save" class="button">     <font-awesome-icon
-      icon="save"
-      class="save"
-    /> </button>
+    <div v-if="isPast">
+      <div class="post">
+        <div v-html="content">
+      </div>
+      </div>
+    </div>
+    <div v-else>
+      <vue-editor v-model="content" class="font" :editorToolbar="customToolbar"></vue-editor>
+      <button @click="save" class="button">     <font-awesome-icon
+        icon="save"
+        class="save"
+      /> </button>
+    </div>
   </div>
 </template>
 
@@ -46,6 +54,11 @@ export default {
         store.commit('setBody', body);
       },
     },
+    isPast() {
+      console.log(moment().isAfter(store.state.date));
+      console.log(!moment().isSame(store.state.date, 'd'));
+      return moment().isAfter(store.state.date) && !moment().isSame(store.state.date, 'd');
+    },
   },
   methods: {
     save() {
@@ -76,5 +89,9 @@ export default {
     color: #ffffff;
     background-color: #222222;
     font-size: 16px;
+  }
+
+  .post{
+    padding: 100px 300px;
   }
 </style>
