@@ -2,9 +2,6 @@ const express = require('express');
 const mongodb = require('mongodb');
 const axios = require('axios');
 const moment = require('moment');
-const jsdom = require('jsdom');
-
-const { JSDOM } = jsdom;
 
 const router = express.Router();
 async function loadChannelsCollection() {
@@ -31,14 +28,14 @@ router.post('/', async (req, res) => {
   if (req.body.body && req.body.createdAt) {
     axios.post('https://apiv2.indico.io/emotion', {
       api_key: process.env.INDICO,
-      data: req.body.body,
+      data: req.body.body.replace(/<(.|\n)*?>/g, ''),
     }).then((emotion) => {
       channels.updateOne({
         createdAt: moment(req.body.createdAt).format('MMM DD, YYYY'),
       }, {
         $set: {
           body: req.body.body,
-          emotion: emotion.data,
+          emotion: emotion.data.results,
           createdAt: moment(req.body.createdAt).format('MMM DD, YYYY'),
         },
       }, { upsert: true }).catch(err => console.log(err));

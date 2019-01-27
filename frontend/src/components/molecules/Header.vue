@@ -6,7 +6,7 @@
           <img src="https://slackhq.com/wp-content/themes/babka/img/_rebrand/icons/icon_slack.svg" width="100" class="logo" alt="" scale="0">
         </a>
       </RouterLink>
-      <RouterLink to="/favourite" class="link">
+      <RouterLink to="/statistics" class="link">
         <a>
           <span class="text">Statistics</span>
         </a>
