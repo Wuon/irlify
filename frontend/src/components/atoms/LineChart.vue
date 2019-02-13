@@ -77,6 +77,8 @@
       handle (point, event) {
         if(event.length !== 0){
           const item = event[0];
+          store.commit('setBody', '');
+          store.commit('setEmotion', {});
           store.commit('setDate', moment(this.range[item._index]).startOf('day').toDate());
           this.$router.push('/');
         }

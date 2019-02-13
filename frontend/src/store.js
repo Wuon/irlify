@@ -23,6 +23,9 @@ export default new Vuex.Store({
     setBody(state, body) {
       state.body = body;
     },
+    setEmotion(state, emotion) {
+      state.emotion = emotion;
+    }
   },
   actions: {
 

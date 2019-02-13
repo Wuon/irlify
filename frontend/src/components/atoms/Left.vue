@@ -16,6 +16,8 @@ export default {
   name: 'Left',
   methods: {
     decrease() {
+      store.commit('setBody', '');
+      store.commit('setEmotion', {});
       store.commit('setDate', moment(store.state.date).add(-1, 'd').toDate());
     },
   },

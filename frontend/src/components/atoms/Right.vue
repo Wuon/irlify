@@ -16,6 +16,8 @@ export default {
   name: 'Right',
   methods: {
     increase() {
+      store.commit('setBody', '');
+      store.commit('setEmotion', {});
       store.commit('setDate', moment(store.state.date).add(1, 'd').toDate());
     },
   },
