@@ -14,10 +14,10 @@ export default new Vuex.Store({
   mutations: {
     setDate(state, date) {
       state.date = date;
-      axios.get(`${process.env.VUE_APP_API}/api/entry?date=${moment(date).format('YYYY-MM-DD')}`)
+      axios.get(`${process.env.VUE_APP_API}/api/entry?start=${moment(date).format()}&end=${moment(date).format()}`)
         .then((response) => {
-          state.body = response.data.body;
-          state.emotion = response.data.emotion;
+          state.body = response.data.body || '<h1>Empty entry :(</h1>';
+          state.emotion = response.data.emotion || null;
         });
     },
     setBody(state, body) {

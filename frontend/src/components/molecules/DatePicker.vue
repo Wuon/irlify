@@ -20,11 +20,11 @@ export default {
   components: { Right, Title, Left },
   computed: {
     today() {
-      return store.state.date;
+      return moment(store.state.date).format('MMM DD, YYYY');
     },
   },
   beforeCreate() {
-    store.commit('setDate', moment().format('MMM DD, YYYY'));
+    store.commit('setDate', moment().startOf('day').toDate());
   },
 };
 </script>

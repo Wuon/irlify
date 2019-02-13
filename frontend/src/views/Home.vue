@@ -2,10 +2,12 @@
   <div class="container">
     <div v-if="isPast">
       <div class="post">
-        <font-awesome-icon
-          :icon=largest
-          class="emoji"
-        />
+        <div v-if="isEmpty">
+          <font-awesome-icon
+            :icon=largest
+            class="emoji"
+          />
+        </div>
         <div v-html="content">
       </div>
       </div>
@@ -79,6 +81,9 @@ export default {
     isPast() {
       return moment().isAfter(store.state.date) && !moment().isSame(store.state.date, 'd');
     },
+    isEmpty() {
+      return store.state.emotion
+    }
   },
   methods: {
     save() {

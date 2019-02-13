@@ -16,7 +16,7 @@ export default {
   name: 'Left',
   methods: {
     decrease() {
-      store.commit('setDate', moment(store.state.date, 'MMM DD, YYYY').add(-1, 'd').format('MMM DD, YYYY'));
+      store.commit('setDate', moment(store.state.date).add(-1, 'd').toDate());
     },
   },
 };

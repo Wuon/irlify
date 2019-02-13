@@ -16,10 +16,15 @@ async function loadChannelsCollection() {
 
 router.get('/', async (req, res) => {
   const channels = await loadChannelsCollection();
-  if (req.query.date) {
-    res.send(await channels.findOne({ createdAt: moment(req.query.date).format('MMM DD, YYYY') }));
+  if (req.query.start && req.query.end) {
+    res.send(await channels.findOne({
+      createdAt: {
+        $gte: moment(req.query.start).startOf('day').toDate(),
+        $lt: moment(req.query.end).endOf('day').toDate(),
+      },
+    }).then(response => response || {} ));
   } else {
-    res.send(await channels.find({}).toArray());
+    res.send(await channels.find({}).sort({createdAt: -1}).toArray());
   }
 });
 
@@ -30,14 +35,19 @@ router.post('/', async (req, res) => {
       api_key: process.env.INDICO,
       data: req.body.body.replace(/<(.|\n)*?>/g, ''),
     }).then((emotion) => {
+      let date = new Date();
+      date.setHours(0,0,0,0);
       channels.updateOne({
-        createdAt: moment(req.body.createdAt).format('MMM DD, YYYY'),
+        createdAt: moment(req.body.createdAt).startOf('day').toDate(),
       }, {
         $set: {
           body: req.body.body,
           emotion: emotion.data.results,
-          createdAt: moment(req.body.createdAt).format('MMM DD, YYYY'),
+          updatedAt: new Date(),
         },
+        $setOnInsert: {
+          createdAt: date,
+        }
       }, { upsert: true }).catch(err => console.log(err));
     });
     res.status(201).send();
