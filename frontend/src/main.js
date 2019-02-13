@@ -5,6 +5,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
+import VueCharts from 'vue-chartjs';
+import { Line } from 'vue-chartjs';
+
 import Vue from 'vue';
 import Trend from 'vuetrend';
 import Bars from 'vuebars';

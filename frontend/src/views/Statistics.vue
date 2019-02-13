@@ -1,10 +1,13 @@
 <template>
   <div class="container">
+    <!--
       <Graph :data=anger title="Anger" :gradient="['#ffb3ba']"></Graph>
       <Graph :data=joy title="Joy" :gradient="['#ffd84d']"></Graph>
       <Graph :data=fear title="Fear" :gradient="['#3eff70']"></Graph>
       <Graph :data=sadness title="Sadness" :gradient="['#bae1ff']"></Graph>
       <Graph :data=surprise title="Surprise" :gradient="['#ff9336']"></Graph>
+      -->
+    <LineChart :range=range :anger=anger :joy="joy" :fear="fear" :sadness="sadness" :surprise="surprise"></LineChart>
   </div>
 </template>
 
@@ -12,9 +15,11 @@
 import axios from 'axios';
 import _ from 'lodash';
 import Graph from '../components/atoms/Graph.vue';
+import LineChart from '../components/atoms/LineChart.vue';
+import moment from 'moment';
 
 export default {
-  components: { Graph },
+  components: {LineChart, Graph },
   data() {
     return {
       anger: [],
@@ -22,6 +27,7 @@ export default {
       fear: [],
       sadness: [],
       surprise: [],
+      range: [],
     };
   },
   mounted() {
@@ -32,6 +38,7 @@ export default {
         this.joy.push(entry.emotion.joy);
         this.sadness.push(entry.emotion.sadness);
         this.surprise.push(entry.emotion.surprise);
+        this.range.push(moment(entry.createdAt).format('MMM DD, YYYY'));
       });
     });
   },
